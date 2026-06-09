@@ -14,6 +14,7 @@ function Plans() {
   }, []);
 
   async function fetchPlans() {
+    setError('');
     try {
       const response = await fetch('http://localhost:5000/api/plans', {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -36,6 +37,7 @@ function Plans() {
   async function deletePlan(id) {
     if (!window.confirm('Are you sure you want to delete this plan?')) return;
 
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/plans/${id}`, {
         method: 'DELETE',
@@ -91,8 +93,8 @@ function Plans() {
               <tr key={plan.id}>
                 <td><strong>{plan.name}</strong></td>
                 <td>{plan.description || '-'}</td>
-                <td>${parseFloat(plan.monthly_price).toFixed(2)}</td>
-                <td>${parseFloat(plan.yearly_price).toFixed(2)}</td>
+                <td>₹{parseFloat(plan.monthly_price).toFixed(2)}</td>
+                <td>₹{parseFloat(plan.yearly_price).toFixed(2)}</td>
                 <td>
                   <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13 }}>
                     {getFeaturesList(plan.features).map((f, i) => (

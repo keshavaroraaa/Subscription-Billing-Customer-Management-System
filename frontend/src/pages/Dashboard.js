@@ -13,6 +13,7 @@ function Dashboard() {
   }, []);
 
   async function fetchData() {
+    setError('');
     try {
       const response = await fetch('http://localhost:5000/api/dashboard', {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -57,12 +58,12 @@ function Dashboard() {
         </div>
         <div className="stat-card revenue">
           <h3>Monthly Revenue</h3>
-          <div className="stat-value">${parseFloat(data.monthlyRevenue).toFixed(2)}</div>
+          <div className="stat-value">₹{parseFloat(data.monthlyRevenue).toFixed(2)}</div>
         </div>
         <div className="stat-card">
           <h3>Pending Payments</h3>
           <div className="stat-value">{data.pendingPayments}</div>
-          <div className="stat-sub">${parseFloat(data.pendingAmount).toFixed(2)}</div>
+          <div className="stat-sub">₹{parseFloat(data.pendingAmount).toFixed(2)}</div>
         </div>
       </div>
 
@@ -87,7 +88,7 @@ function Dashboard() {
                   <td>{inv.invoice_number}</td>
                   <td>{inv.customer_name}</td>
                   <td>{inv.plan_name}</td>
-                  <td>${parseFloat(inv.total_amount).toFixed(2)}</td>
+                  <td>₹{parseFloat(inv.total_amount).toFixed(2)}</td>
                   <td>
                     <span className={`status-badge status-${inv.payment_status}`}>
                       {inv.payment_status}

@@ -285,9 +285,22 @@ table tr:hover {
   gap: 6px;
 }
 
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 @media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
   .main-content {
-    margin-left: 0;
+    margin-left: 200px;
+  }
+
+  .page-content {
+    padding: 20px;
   }
 
   .form-row {
@@ -301,5 +314,23 @@ table tr:hover {
 
   .filter-bar input {
     min-width: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .navbar-title {
+    display: none;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr 1fr;
   }
 }

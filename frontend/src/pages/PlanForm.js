@@ -125,7 +125,7 @@ function PlanForm() {
           </div>
           <div className="form-row">
             <div className="form-group">
-              <label>Monthly Price ($) *</label>
+              <label>Monthly Price (₹) *</label>
               <input
                 type="number"
                 step="0.01"
@@ -136,7 +136,7 @@ function PlanForm() {
               />
             </div>
             <div className="form-group">
-              <label>Yearly Price ($) *</label>
+              <label>Yearly Price (₹) *</label>
               <input
                 type="number"
                 step="0.01"

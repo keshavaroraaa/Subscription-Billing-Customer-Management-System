@@ -13,6 +13,7 @@ function Invoices() {
   }, [paymentFilter]);
 
   async function fetchInvoices() {
+    setError('');
     try {
       let url = 'http://localhost:5000/api/invoices?';
       if (paymentFilter) url += `payment_status=${paymentFilter}&`;
@@ -36,6 +37,7 @@ function Invoices() {
   }
 
   async function markPaid(id) {
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/invoices/${id}/mark-paid`, {
         method: 'PUT',
@@ -51,6 +53,7 @@ function Invoices() {
   }
 
   async function markUnpaid(id) {
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/invoices/${id}/mark-unpaid`, {
         method: 'PUT',
@@ -63,10 +66,6 @@ function Invoices() {
     } catch (err) {
       setError('Failed to update invoice');
     }
-  }
-
-  function downloadPDF(id) {
-    window.open(`http://localhost:5000/api/invoices/${id}/pdf`, '_blank');
   }
 
   if (loading) return <div className="empty-state"><p>Loading invoices...</p></div>;
@@ -111,9 +110,9 @@ function Invoices() {
                 <td>{inv.invoice_number}</td>
                 <td>{inv.customer_name}</td>
                 <td>{inv.plan_name}</td>
-                <td>${parseFloat(inv.amount).toFixed(2)}</td>
-                <td>${parseFloat(inv.tax).toFixed(2)}</td>
-                <td><strong>${parseFloat(inv.total_amount).toFixed(2)}</strong></td>
+                <td>₹{parseFloat(inv.amount).toFixed(2)}</td>
+                <td>₹{parseFloat(inv.tax).toFixed(2)}</td>
+                <td><strong>₹{parseFloat(inv.total_amount).toFixed(2)}</strong></td>
                 <td>{new Date(inv.invoice_date).toLocaleDateString()}</td>
                 <td>{new Date(inv.due_date).toLocaleDateString()}</td>
                 <td>
@@ -123,9 +122,6 @@ function Invoices() {
                 </td>
                 <td>
                   <div className="action-buttons">
-                    <button className="btn btn-sm btn-success" onClick={() => downloadPDF(inv.id)}>
-                      PDF
-                    </button>
                     {inv.payment_status === 'unpaid' ? (
                       <button className="btn btn-sm btn-primary" onClick={() => markPaid(inv.id)}>
                         Mark Paid

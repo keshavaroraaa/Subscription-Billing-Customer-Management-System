@@ -7,6 +7,5 @@ router.get('/', authenticateToken, invoiceController.getInvoices);
 router.get('/:id', authenticateToken, invoiceController.getInvoice);
 router.put('/:id/mark-paid', authenticateToken, invoiceController.markPaid);
 router.put('/:id/mark-unpaid', authenticateToken, invoiceController.markUnpaid);
-router.get('/:id/pdf', authenticateToken, invoiceController.downloadInvoicePDF);
 
 module.exports = router;

@@ -23,8 +23,8 @@ app.use('/api/invoices', invoiceRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong!' });
+  console.error('Unhandled error:', err.message);
+  res.status(500).json({ message: 'An unexpected error occurred. Please try again later.' });
 });
 
 app.listen(PORT, () => {

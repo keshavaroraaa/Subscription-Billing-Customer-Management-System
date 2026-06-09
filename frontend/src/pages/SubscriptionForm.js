@@ -107,7 +107,7 @@ function SubscriptionForm() {
               <option value="">Select plan</option>
               {plans.map((p) => (
                 <option key={p.id} value={p.id}>
-                  {p.name} - ${parseFloat(p.monthly_price).toFixed(2)}/mo or ${parseFloat(p.yearly_price).toFixed(2)}/yr
+                  {p.name} - ₹{parseFloat(p.monthly_price).toFixed(2)}/mo or ₹{parseFloat(p.yearly_price).toFixed(2)}/yr
                 </option>
               ))}
             </select>

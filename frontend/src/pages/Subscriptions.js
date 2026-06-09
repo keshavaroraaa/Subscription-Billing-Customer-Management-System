@@ -16,6 +16,7 @@ function Subscriptions() {
   }, [statusFilter]);
 
   async function fetchSubscriptions() {
+    setError('');
     try {
       let url = 'http://localhost:5000/api/subscriptions?';
       if (statusFilter) url += `status=${statusFilter}&`;
@@ -51,6 +52,7 @@ function Subscriptions() {
   async function handleCancel(id) {
     if (!window.confirm('Cancel this subscription?')) return;
 
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/subscriptions/${id}/cancel`, {
         method: 'PUT',
@@ -68,6 +70,7 @@ function Subscriptions() {
   async function handleRenew(id) {
     if (!window.confirm('Renew this subscription?')) return;
 
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/subscriptions/${id}/renew`, {
         method: 'PUT',
@@ -94,6 +97,7 @@ function Subscriptions() {
     const newPlanId = higherPlans[0].id;
     if (!window.confirm(`Upgrade to ${higherPlans[0].name}?`)) return;
 
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/subscriptions/${subId}/upgrade`, {
         method: 'PUT',
@@ -129,6 +133,7 @@ function Subscriptions() {
     const newPlanId = lowerPlans[lowerPlans.length - 1].id;
     if (!window.confirm(`Downgrade to ${lowerPlans[lowerPlans.length - 1].name}?`)) return;
 
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/subscriptions/${subId}/downgrade`, {
         method: 'PUT',

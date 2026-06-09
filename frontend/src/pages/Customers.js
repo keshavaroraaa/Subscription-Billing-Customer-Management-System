@@ -16,6 +16,7 @@ function Customers() {
   }, [search, statusFilter]);
 
   async function fetchCustomers() {
+    setError('');
     try {
       let url = 'http://localhost:5000/api/customers?';
       if (search) url += `search=${encodeURIComponent(search)}&`;
@@ -40,6 +41,7 @@ function Customers() {
   }
 
   async function toggleStatus(id) {
+    setError('');
     try {
       const response = await fetch(`http://localhost:5000/api/customers/${id}/toggle-status`, {
         method: 'PATCH',
