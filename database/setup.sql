@@ -68,11 +68,11 @@ CREATE TABLE invoices (
 -- Email: admin@example.com, Password: admin123
 
 INSERT INTO customers (name, email, phone, company, status) VALUES
-('John Smith', 'john.smith@email.com', '555-0101', 'Smith Enterprises', 'active'),
-('Sarah Johnson', 'sarah.j@email.com', '555-0102', 'Johnson Consulting', 'active'),
-('Mike Williams', 'mike.w@email.com', '555-0103', 'Williams Tech', 'active'),
-('Emily Brown', 'emily.b@email.com', '555-0104', 'Brown Media', 'inactive'),
-('David Lee', 'david.lee@email.com', '555-0105', 'Lee Associates', 'active');
+('Keshav Arora', 'keshav.arora@email.com', '8439920267', 'Keshav Enterprises', 'active'),
+('Paarth Srivastava', 'paarth.srivastava@email.com', '8439920268', 'Srivastava Solutionsa', 'active'),
+('Nikhil Singhal', 'nikhil.singhal@email.com', '8439920269', 'Nikhil Tech', 'active'),
+('Hiranay Rao', 'hiranay.rao@email.com', '8439920270', 'Hiranay Media', 'inactive'),
+('Sanaa Jain', 'sanaa.jain@email.com', '8439920271', 'Sanaa Associates', 'active');
 
 INSERT INTO plans (name, description, monthly_price, yearly_price, features, status) VALUES
 ('Basic', 'Essential features for small businesses', 29.99, 299.99, 'Basic analytics,Email support,5 projects', 'active'),
