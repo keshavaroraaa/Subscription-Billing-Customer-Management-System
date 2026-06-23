@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 
 function PlanForm() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ function PlanForm() {
 
   async function fetchPlan() {
     try {
-      const response = await fetch(`http://localhost:5000/api/plans/${id}`, {
+      const response = await fetch(apiUrl(`/api/plans/${id}`), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -65,8 +66,8 @@ function PlanForm() {
 
     try {
       const url = isEdit
-        ? `http://localhost:5000/api/plans/${id}`
-        : 'http://localhost:5000/api/plans';
+        ? apiUrl(`/api/plans/${id}`)
+        : apiUrl('/api/plans');
 
       const method = isEdit ? 'PUT' : 'POST';
 

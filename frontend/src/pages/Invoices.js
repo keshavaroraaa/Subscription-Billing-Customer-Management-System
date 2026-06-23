@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 
 function Invoices() {
   const [invoices, setInvoices] = useState([]);
@@ -15,7 +16,7 @@ function Invoices() {
   async function fetchInvoices() {
     setError('');
     try {
-      let url = 'http://localhost:5000/api/invoices?';
+      let url = apiUrl('/api/invoices?');
       if (paymentFilter) url += `payment_status=${paymentFilter}&`;
 
       const response = await fetch(url, {
@@ -39,7 +40,7 @@ function Invoices() {
   async function markPaid(id) {
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/invoices/${id}/mark-paid`, {
+      const response = await fetch(apiUrl(`/api/invoices/${id}/mark-paid`), {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -55,7 +56,7 @@ function Invoices() {
   async function markUnpaid(id) {
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/invoices/${id}/mark-unpaid`, {
+      const response = await fetch(apiUrl(`/api/invoices/${id}/mark-unpaid`), {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });

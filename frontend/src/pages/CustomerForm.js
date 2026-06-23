@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 
 function CustomerForm() {
   const { id } = useParams();
@@ -25,7 +26,7 @@ function CustomerForm() {
 
   async function fetchCustomer() {
     try {
-      const response = await fetch(`http://localhost:5000/api/customers/${id}`, {
+      const response = await fetch(apiUrl(`/api/customers/${id}`), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -63,8 +64,8 @@ function CustomerForm() {
 
     try {
       const url = isEdit
-        ? `http://localhost:5000/api/customers/${id}`
-        : 'http://localhost:5000/api/customers';
+        ? apiUrl(`/api/customers/${id}`)
+        : apiUrl('/api/customers');
 
       const method = isEdit ? 'PUT' : 'POST';
 

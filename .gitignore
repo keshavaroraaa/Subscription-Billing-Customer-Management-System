@@ -141,3 +141,15 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Build output
+frontend/build/
+
+# Screenshots (not needed in production)
+screenshots/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

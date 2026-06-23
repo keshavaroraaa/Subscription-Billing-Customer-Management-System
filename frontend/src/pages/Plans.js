@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 
 function Plans() {
   const [plans, setPlans] = useState([]);
@@ -16,7 +17,7 @@ function Plans() {
   async function fetchPlans() {
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/plans', {
+      const response = await fetch(apiUrl('/api/plans'), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -39,7 +40,7 @@ function Plans() {
 
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/plans/${id}`, {
+      const response = await fetch(apiUrl(`/api/plans/${id}`), {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

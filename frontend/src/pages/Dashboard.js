@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 import '../styles/dashboard.css';
 
 function Dashboard() {
@@ -15,7 +16,7 @@ function Dashboard() {
   async function fetchData() {
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/dashboard', {
+      const response = await fetch(apiUrl('/api/dashboard'), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const result = await response.json();

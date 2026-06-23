@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 
 function SubscriptionForm() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function SubscriptionForm() {
 
   async function fetchCustomers() {
     try {
-      const response = await fetch('http://localhost:5000/api/customers?status=active', {
+      const response = await fetch(apiUrl('/api/customers?status=active'), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -34,7 +35,7 @@ function SubscriptionForm() {
 
   async function fetchPlans() {
     try {
-      const response = await fetch('http://localhost:5000/api/plans', {
+      const response = await fetch(apiUrl('/api/plans'), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -58,7 +59,7 @@ function SubscriptionForm() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/subscriptions', {
+      const response = await fetch(apiUrl('/api/subscriptions'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

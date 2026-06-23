@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 
 function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -18,7 +19,7 @@ function Customers() {
   async function fetchCustomers() {
     setError('');
     try {
-      let url = 'http://localhost:5000/api/customers?';
+      let url = apiUrl('/api/customers?');
       if (search) url += `search=${encodeURIComponent(search)}&`;
       if (statusFilter) url += `status=${statusFilter}&`;
 
@@ -43,7 +44,7 @@ function Customers() {
   async function toggleStatus(id) {
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/customers/${id}/toggle-status`, {
+      const response = await fetch(apiUrl(`/api/customers/${id}/toggle-status`), {
         method: 'PATCH',
         headers: { 'Authorization': `Bearer ${token}` }
       });

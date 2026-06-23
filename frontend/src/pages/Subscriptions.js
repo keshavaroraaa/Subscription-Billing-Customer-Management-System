@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { apiUrl } from '../api/config';
 
 function Subscriptions() {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -18,7 +19,7 @@ function Subscriptions() {
   async function fetchSubscriptions() {
     setError('');
     try {
-      let url = 'http://localhost:5000/api/subscriptions?';
+      let url = apiUrl('/api/subscriptions?');
       if (statusFilter) url += `status=${statusFilter}&`;
 
       const response = await fetch(url, {
@@ -41,7 +42,7 @@ function Subscriptions() {
 
   async function fetchPlans() {
     try {
-      const response = await fetch('http://localhost:5000/api/plans', {
+      const response = await fetch(apiUrl('/api/plans'), {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -54,7 +55,7 @@ function Subscriptions() {
 
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/subscriptions/${id}/cancel`, {
+      const response = await fetch(apiUrl(`/api/subscriptions/${id}/cancel`), {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -72,7 +73,7 @@ function Subscriptions() {
 
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/subscriptions/${id}/renew`, {
+      const response = await fetch(apiUrl(`/api/subscriptions/${id}/renew`), {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -99,7 +100,7 @@ function Subscriptions() {
 
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/subscriptions/${subId}/upgrade`, {
+      const response = await fetch(apiUrl(`/api/subscriptions/${subId}/upgrade`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -135,7 +136,7 @@ function Subscriptions() {
 
     setError('');
     try {
-      const response = await fetch(`http://localhost:5000/api/subscriptions/${subId}/downgrade`, {
+      const response = await fetch(apiUrl(`/api/subscriptions/${subId}/downgrade`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
